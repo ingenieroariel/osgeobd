@@ -30,7 +30,7 @@ class Building(models.Model):
     shop = models.CharField(max_length=255, blank=True, null=True)
     sport = models.CharField(max_length=255, blank=True, null=True)
     tourism = models.CharField(max_length=255, blank=True, null=True)
-    other_tags = models.TextField(blank=True, null=True)  # This field type is a guess.
+#    other_tags = models.TextField(blank=True, null=True)  # This field type is a guess.
     objects = models.GeoManager()
 
     class Meta:
@@ -50,9 +50,17 @@ class Restaurant(models.Model):
     is_in = models.CharField(max_length=255, blank=True, null=True)
     place = models.CharField(max_length=255, blank=True, null=True)
     man_made = models.CharField(max_length=255, blank=True, null=True)
-    other_tags = models.TextField(blank=True, null=True)  # This field type is a guess.
+#    other_tags = models.TextField(blank=True, null=True)  # This field type is a guess.
     objects = models.GeoManager()
 
     class Meta:
         managed = False
         db_table = 'restaurants'
+
+def fixrestaurants():
+    for restaurant in Restaurant.objects.all():
+        buildings = Building.objects.filter(geom__intersects=restaurant.geom)
+        if buildings.count() == 1:
+            print buildings[0].osm_way_id, restaurant.id
+            restaurant.is_in = buildings[0].osm_way_id
+            restaurant.save()

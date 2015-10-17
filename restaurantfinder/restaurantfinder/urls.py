@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.generic import ListView
+from osm.models import Restaurant
 
 urlpatterns = [
+    url(r'^restaurants$', ListView.as_view(queryset=Restaurant.objects.all(), template_name='osm/restaurants.html')),
     url(r'^admin/', include(admin.site.urls)),
 ]

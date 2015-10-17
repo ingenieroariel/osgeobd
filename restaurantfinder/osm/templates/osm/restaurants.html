@@ -1,0 +1,30 @@
+{% load leaflet_tags %}
+{% load geojson_tags %}
+
+<html>
+ <head>
+  {% leaflet_js %}
+  {% leaflet_css %}
+ </head>
+ <body>
+   <script type="text/javascript">
+      var collection = {{ object_list|geojsonfeature|safe }};
+      function map_init(map, options) {
+          L.geoJson(collection).addTo(map);
+      }
+    </script>
+
+    {% leaflet_map "spots" callback="window.map_init" %}
+        <h1>Restaurants</h1>
+  <ol>
+{% for restaurant in object_list %}
+    <li>{{ restaurant.name }}: {{restaurant.geom.x}}, {{restaurant.geom.y}}
+    {% if restaurant.is_in != None %}
+        <a href="https://www.openstreetmap.org/edit?way={{restaurant.is_in}}">Fix polygon</a></li>
+    {% else %}
+        <a href="https://www.openstreetmap.org/edit?#map=20/{{restaurant.y}}/{{restaurant.x}}">Add polygon</a> 
+     {% endif %}
+{% endfor %}
+  </ol>
+ </body>
+</html>

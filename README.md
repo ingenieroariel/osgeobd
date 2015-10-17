@@ -22,5 +22,5 @@ Goals
  4. Learn about Django and the database instrospection functions (DONE)
  5. Learn about the Django admin (DONE)
  6. Create a web map with Leaflet and GeoJson with restaurants in Dhaka
- 7. Understand why there are restaurants with NO buildings.
+ 7. Understand why there are restaurants with NO buildings. (DONE)
 
