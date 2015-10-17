@@ -8,3 +8,6 @@ bangladesh.pbf:
 
 restaurants.pbf: bangladesh.pbf
 	$(OSMOSIS) --read-pbf-fast file="$<" --nkv keyValueList="amenity.restaurant,amenity.restaurants" --tf reject-ways --tf reject-relations --write-pbf file="$@"
+
+restaurants.sql: restaurants.pbf
+	ogr2ogr -f PGDump $@ $< -lco COLUMN_TYPES=other_tags=hstore --config       OSM_CONFIG_FILE conf/$(basename $@).ini
