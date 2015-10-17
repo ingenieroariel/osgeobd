@@ -10,6 +10,10 @@ Before
 Get OSMOSIS:
 http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.zip
 
+Get GDAL:
+GDAL is Awesome, the best thing since bottled water.
+http://www.gdal.org
+
 Goals
 
  1. Learn how to extract information from OSM for Bangladesh (DONE)
