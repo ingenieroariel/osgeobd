@@ -39,8 +39,8 @@ class Building(models.Model):
 
 
 class Restaurant(models.Model):
-    ogc_fid = models.IntegerField(blank=True, null=True)
-    wkb_geometry = models.PointField(blank=True, null=True)
+    id = models.IntegerField(primary_key=True, db_column='ogc_fid')
+    geom = models.PointField(db_column='wkb_geometry', blank=True, null=True)
     osm_id = models.CharField(max_length=255, blank=True, null=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     barrier = models.CharField(max_length=255, blank=True, null=True)
