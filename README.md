@@ -5,6 +5,11 @@ Purpose
 
 Learn about OpenStreetMap, Postgis and GeoDjango.
 
+Before
+
+Get OSMOSIS:
+http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.zip
+
 Goals
 
  1. Learn how to extract information from OSM for Bangladesh (DONE)
